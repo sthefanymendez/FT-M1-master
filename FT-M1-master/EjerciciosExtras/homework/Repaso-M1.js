@@ -16,10 +16,16 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
-    
+    let sum = 0;
+    for (let i = 0; i < array.length; i++){
+        if(Array.isArray(array[i])){
+            sum += countArray(array[i])
+        } else{
+            sum += array[i]
+        }
+    }
+    return sum
 }
-
-
 // Implementar la función countProps: a partir de un objeto en el cual cada propiedad puede contener
 // cualquier tipo de dato, determinar la cantidad de propiedades de objetos en cualquier nivel, ya sea el inicial
 // u objetos anidados
@@ -37,9 +43,16 @@ var countArray = function(array) {
 // dentro de a tenemos 3 propiedades mas, luego a3 tiene otras 3 y por ultimo c tiene una extra.
 // Propiedades: a, a1, a2, a3, f, a, c, o, b, c --> 10 en total
 
-var countProps = function(obj) {
+var countProps = function(obj){
     // Tu código aca:
-
+let count=0
+for(let prop in obj){
+    count++
+    if(typeof obj[prop]==="object" && !Array.isArray(obj[prop])){
+        count+=countProps(obj[prop])
+    }
+}
+return count
 }
 
 
@@ -53,7 +66,17 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
-
+    let count=0;
+    let current= this.head
+    while(current){
+        
+        if(isNaN(Number(current.value))){
+            current.value="Kiricocho"
+            count++
+        }
+        current=current.next
+    }
+return count
 }
 
 
@@ -67,7 +90,15 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
+    let newQueue = new Queue()
+    while(queueOne.size() || queueTwo.size()){
+        let elemOne= queueOne.dequeue()
+        let elemTwo= queueTwo.dequeue()
+        if(elemOne)newQueue.enqueue(elemOne)
+        elemTwo && newQueue.enqueue(elemTwo)
 
+    }
+    return newQueue
 }
 
 
@@ -82,6 +113,9 @@ var mergeQueues = function(queueOne, queueTwo) {
 
 var closureMult = function(multiplier) {
     // Tu código aca:
+    return function(num){
+        return num*multiplier
+    }
 
 }
 
@@ -89,6 +123,12 @@ var closureMult = function(multiplier) {
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
+
+    let sum = this.value
+    if(this.left) sum+=this.left.sum()
+    if(this.right) sum+=this.right.sum()
+    
+    return sum
 
 }
 

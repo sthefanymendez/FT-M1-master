@@ -24,7 +24,7 @@ Al finalizar esta homework comprenderás la lógica computacional a través de l
 
 1. Para ubicarte dentro de la carpeta homework escribe en tu terminal los siguientes comandos:
    -  cd + [01-IntroToCS].
-   -  cd + [homework].
+   -  cd + [ ].
 2. Luego, instalaremos las dependencias con el comando:
 
 ```javascript
